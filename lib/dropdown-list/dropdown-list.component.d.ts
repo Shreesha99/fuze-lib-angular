@@ -7,7 +7,7 @@ export declare class DropdownListComponent {
     selectedItem: string | null;
     /** Placeholder text when no item is selected */
     placeholder: string;
-    /** Optional click handler when an item is selected */
+    /** Emits the selected item */
     onSelect: EventEmitter<string>;
     isOpen: boolean;
     /** Toggle the visibility of the dropdown */
