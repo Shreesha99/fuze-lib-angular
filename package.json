@@ -1,6 +1,6 @@
 {
-  "name": "fuze-lib-angular",
-  "version": "1.0.2",
+  "name": "fuze-lib",
+  "version": "1.0.3",
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0"

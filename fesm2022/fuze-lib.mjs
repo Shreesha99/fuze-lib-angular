@@ -234,7 +234,7 @@ class DropdownListComponent {
     selectedItem = null;
     /** Placeholder text when no item is selected */
     placeholder = 'Select an option';
-    /** Optional click handler when an item is selected */
+    /** Emits the selected item */
     onSelect = new EventEmitter();
     isOpen = false;
     /** Toggle the visibility of the dropdown */
@@ -250,39 +250,49 @@ class DropdownListComponent {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: DropdownListComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: DropdownListComponent, isStandalone: true, selector: "lib-dropdown-list", inputs: { items: "items", selectedItem: "selectedItem", placeholder: "placeholder" }, outputs: { onSelect: "onSelect" }, ngImport: i0, template: `
     <div class="dropdown">
-      <button class="dropdown-button" (click)="toggleDropdown()">
+      <button
+        class="lib-dropdown"
+        (click)="toggleDropdown()"
+        [ngClass]="{ active: isOpen }"
+      >
         {{ selectedItem || placeholder }}
+        <span class="caret"></span>
       </button>
       <ul *ngIf="isOpen" class="dropdown-menu">
         <li
           *ngFor="let item of items"
           (click)="selectItem(item)"
-          class="dropdown-item"
+          [ngClass]="{ 'dropdown-item': true, selected: item === selectedItem }"
         >
           {{ item }}
         </li>
       </ul>
     </div>
-  `, isInline: true, styles: [".dropdown{position:relative;display:inline-block}.dropdown-button{padding:10px;background-color:#007bff;color:#fff;border:none;cursor:pointer;border-radius:4px}.dropdown-button:hover{background-color:#0056b3}.dropdown-menu{position:absolute;top:100%;left:0;background-color:#fff;border:1px solid #ddd;box-shadow:0 8px 16px #0003;width:100%;max-height:200px;overflow-y:auto;padding:0;margin:0;list-style-type:none;z-index:1}.dropdown-item{padding:10px;cursor:pointer}.dropdown-item:hover{background-color:#f1f1f1}.dropdown-item.selected{background-color:#007bff;color:#fff}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+  `, isInline: true, styles: [".dropdown{position:relative;display:inline-block}.lib-dropdown{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;width:200px;padding:10px 12px;background-color:#dc3e4e;color:#fff;border:none;cursor:pointer;border-radius:.5em;font-size:14px;font-weight:700;text-align:left;display:flex;justify-content:space-between;align-items:center}.lib-dropdown.active{background-color:#b31c2d}.lib-dropdown:hover{background-color:#a81424}.caret{margin-left:auto;border:6px solid transparent;border-top-color:#fff;display:inline-block;vertical-align:middle}.dropdown-menu{position:absolute;top:calc(100% + 5px);left:0;background-color:#fff;border:1px solid #ddd;border-radius:.5em;box-shadow:0 8px 16px #0003;list-style:none;margin:0;padding:5px 0;z-index:1;width:100%}.dropdown-item{padding:10px 12px;font-size:14px;color:#333;cursor:pointer}.dropdown-item:hover{background-color:#f5f5f5}.dropdown-item.selected{background-color:#dc3e4e;color:#fff;font-weight:700}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: DropdownListComponent, decorators: [{
             type: Component,
             args: [{ selector: 'lib-dropdown-list', standalone: true, imports: [CommonModule], template: `
     <div class="dropdown">
-      <button class="dropdown-button" (click)="toggleDropdown()">
+      <button
+        class="lib-dropdown"
+        (click)="toggleDropdown()"
+        [ngClass]="{ active: isOpen }"
+      >
         {{ selectedItem || placeholder }}
+        <span class="caret"></span>
       </button>
       <ul *ngIf="isOpen" class="dropdown-menu">
         <li
           *ngFor="let item of items"
           (click)="selectItem(item)"
-          class="dropdown-item"
+          [ngClass]="{ 'dropdown-item': true, selected: item === selectedItem }"
         >
           {{ item }}
         </li>
       </ul>
     </div>
-  `, styles: [".dropdown{position:relative;display:inline-block}.dropdown-button{padding:10px;background-color:#007bff;color:#fff;border:none;cursor:pointer;border-radius:4px}.dropdown-button:hover{background-color:#0056b3}.dropdown-menu{position:absolute;top:100%;left:0;background-color:#fff;border:1px solid #ddd;box-shadow:0 8px 16px #0003;width:100%;max-height:200px;overflow-y:auto;padding:0;margin:0;list-style-type:none;z-index:1}.dropdown-item{padding:10px;cursor:pointer}.dropdown-item:hover{background-color:#f1f1f1}.dropdown-item.selected{background-color:#007bff;color:#fff}\n"] }]
+  `, styles: [".dropdown{position:relative;display:inline-block}.lib-dropdown{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;width:200px;padding:10px 12px;background-color:#dc3e4e;color:#fff;border:none;cursor:pointer;border-radius:.5em;font-size:14px;font-weight:700;text-align:left;display:flex;justify-content:space-between;align-items:center}.lib-dropdown.active{background-color:#b31c2d}.lib-dropdown:hover{background-color:#a81424}.caret{margin-left:auto;border:6px solid transparent;border-top-color:#fff;display:inline-block;vertical-align:middle}.dropdown-menu{position:absolute;top:calc(100% + 5px);left:0;background-color:#fff;border:1px solid #ddd;border-radius:.5em;box-shadow:0 8px 16px #0003;list-style:none;margin:0;padding:5px 0;z-index:1;width:100%}.dropdown-item{padding:10px 12px;font-size:14px;color:#333;cursor:pointer}.dropdown-item:hover{background-color:#f5f5f5}.dropdown-item.selected{background-color:#dc3e4e;color:#fff;font-weight:700}\n"] }]
         }], propDecorators: { items: [{
                 type: Input
             }], selectedItem: [{
@@ -293,48 +303,54 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
                 type: Output
             }] } });
 
-class TextboxButtonComponent {
+class TextboxComponent {
     /** Placeholder text for the textbox */
     placeholder = 'Enter text';
     /** Value of the textbox */
     value = '';
     /** Optional disabled state */
     disabled = false;
+    /** Border radius for customization */
+    borderRadius = '0.5em'; // Default rounding
     /** Event emitted when the value changes */
     onInputChange = new EventEmitter();
-    // Dynamically calculate the input classes based on input properties
-    get classes() {
-        return ['storybook-textbox-button'];
-    }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextboxButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: TextboxButtonComponent, isStandalone: true, selector: "lib-textbox-button", inputs: { placeholder: "placeholder", value: "value", disabled: "disabled" }, outputs: { onInputChange: "onInputChange" }, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextboxComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.0.1", type: TextboxComponent, isStandalone: true, selector: "lib-textbox", inputs: { placeholder: "placeholder", value: "value", disabled: "disabled", borderRadius: "borderRadius" }, outputs: { onInputChange: "onInputChange" }, ngImport: i0, template: `
     <input
+      class="lib-textbox"
       type="text"
       [placeholder]="placeholder"
-
-      [ngClass]="classes"
+      [value]="value"
       [disabled]="disabled"
+      [ngStyle]="{
+        'border-radius': borderRadius
+      }"
       (input)="onInputChange.emit($event)"
     />
-  `, isInline: true, styles: [".storybook-textbox-button{display:inline-block;padding:10px 20px;border-radius:25px;font-size:16px;border:1px solid #ccc;transition:border-color .3s ease,transform .2s ease}.storybook-textbox-button:hover{transform:scale(1.05)}.storybook-textbox-button:focus{border-color:#007bff}.storybook-textbox-button:disabled{background-color:#f0f0f0;color:#a0a0a0;cursor:not-allowed}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }] });
+  `, isInline: true, styles: [".textbox-container{position:relative;display:inline-block;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.lib-textbox{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;display:inline-block;padding:10px 20px;font-size:16px;border:1px solid #ccc;border-radius:var(--textbox-border-radius, 25px);background-color:#fff;color:#333;box-sizing:border-box;transition:border-color .3s ease,transform .2s ease}.lib-textbox:hover:not(:disabled){transform:scale(1.05);border-color:#dc3e4e}.lib-textbox:focus{border-color:#dc3e4e;box-shadow:0 0 5px #dc3e4e80;outline:none}.lib-textbox:disabled{background-color:#f0f0f0;color:#a0a0a0;cursor:not-allowed}.lib-textbox::placeholder{color:#999;opacity:1}\n"], dependencies: [{ kind: "ngmodule", type: CommonModule }, { kind: "directive", type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextboxButtonComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImport: i0, type: TextboxComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'lib-textbox-button', standalone: true, imports: [CommonModule], template: `
+            args: [{ selector: 'lib-textbox', standalone: true, imports: [CommonModule], template: `
     <input
+      class="lib-textbox"
       type="text"
       [placeholder]="placeholder"
-
-      [ngClass]="classes"
+      [value]="value"
       [disabled]="disabled"
+      [ngStyle]="{
+        'border-radius': borderRadius
+      }"
       (input)="onInputChange.emit($event)"
     />
-  `, styles: [".storybook-textbox-button{display:inline-block;padding:10px 20px;border-radius:25px;font-size:16px;border:1px solid #ccc;transition:border-color .3s ease,transform .2s ease}.storybook-textbox-button:hover{transform:scale(1.05)}.storybook-textbox-button:focus{border-color:#007bff}.storybook-textbox-button:disabled{background-color:#f0f0f0;color:#a0a0a0;cursor:not-allowed}\n"] }]
+  `, styles: [".textbox-container{position:relative;display:inline-block;font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif}.lib-textbox{font-family:Montserrat,Nunito Sans,Helvetica Neue,Helvetica,Arial,sans-serif;display:inline-block;padding:10px 20px;font-size:16px;border:1px solid #ccc;border-radius:var(--textbox-border-radius, 25px);background-color:#fff;color:#333;box-sizing:border-box;transition:border-color .3s ease,transform .2s ease}.lib-textbox:hover:not(:disabled){transform:scale(1.05);border-color:#dc3e4e}.lib-textbox:focus{border-color:#dc3e4e;box-shadow:0 0 5px #dc3e4e80;outline:none}.lib-textbox:disabled{background-color:#f0f0f0;color:#a0a0a0;cursor:not-allowed}.lib-textbox::placeholder{color:#999;opacity:1}\n"] }]
         }], propDecorators: { placeholder: [{
                 type: Input
             }], value: [{
                 type: Input
             }], disabled: [{
+                type: Input
+            }], borderRadius: [{
                 type: Input
             }], onInputChange: [{
                 type: Output
@@ -348,5 +364,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.1", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { AccordionComponent, AccordionItemComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxButtonComponent };
+export { AccordionComponent, AccordionItemComponent, AvatarComponent, BreadcrumbComponent, ButtonComponent, DropdownListComponent, FuzeLibComponent, FuzeLibService, TextboxComponent };
 //# sourceMappingURL=fuze-lib.mjs.map

@@ -11,7 +11,6 @@ export declare class TextboxComponent {
     borderRadius: string;
     /** Event emitted when the value changes */
     onInputChange: EventEmitter<Event>;
-    get classes(): string[];
     static ɵfac: i0.ɵɵFactoryDeclaration<TextboxComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<TextboxComponent, "lib-textbox", never, { "placeholder": { "alias": "placeholder"; "required": false; }; "value": { "alias": "value"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "borderRadius": { "alias": "borderRadius"; "required": false; }; }, { "onInputChange": "onInputChange"; }, never, never, true, never>;
 }
